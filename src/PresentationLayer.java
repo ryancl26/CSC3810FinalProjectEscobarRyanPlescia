@@ -1,3 +1,4 @@
+package src;
 //Connect to database, implement and run main method
 
 import java.sql.ResultSet;
