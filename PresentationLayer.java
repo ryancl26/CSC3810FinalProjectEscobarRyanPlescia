@@ -14,7 +14,7 @@ public class PresentationLayer {
         System.out.println("Enter database password:");
         String password = scanner.nextLine();
 
-        DAL dal = new DAL("Database Name", username, password);
+        DAL dal = new DAL("Restaurant Management", username, password);
 
         int choice;
         do {
