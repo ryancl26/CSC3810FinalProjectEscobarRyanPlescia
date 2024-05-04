@@ -45,6 +45,21 @@ public class DAL {
         }
     }
 
+    public void getAllEmployees() throws SQLException {
+        String sql = "{CALL GetAllEmployees()}";
+
+        try (CallableStatement statement = connection.prepareCall(sql)) {
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                System.out.println("EmployeeID: " + resultSet.getInt("EmployeeID"));
+                System.out.println("EmployeeName: " + resultSet.getString("EmployeeName"));
+                System.out.println("Position: " + resultSet.getString("Position"));
+                System.out.println("Salary: " + resultSet.getDouble("Salary"));
+                System.out.println("----------------------");
+            }
+        }
+    }
+
     public void removeEmployee(int employeeID) throws SQLException {
         String sql = "DELETE FROM EmployeeInfo WHERE EmployeeID = ?";
 

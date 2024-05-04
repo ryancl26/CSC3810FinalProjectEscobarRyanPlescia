@@ -35,7 +35,13 @@ public static void addEmployee(DAL dal, Scanner scanner) {
 //remove an employee
 
 public static void removeEmployee(DAL dal, Scanner scanner) {
-    System.out.println("Removing an employee...");
+    try {
+        System.out.println("Listing all employees:");
+        dal.getAllEmployees();
+    } catch (SQLException exception) {
+        System.out.println("Failed to retrieve employees: " + exception.getMessage());
+        return;
+    }
 
     System.out.println("Enter the ID of the employee to remove:");
     int employeeID = scanner.nextInt();
