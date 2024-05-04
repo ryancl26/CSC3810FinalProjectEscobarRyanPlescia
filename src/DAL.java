@@ -69,4 +69,24 @@ public class DAL {
             statement.executeUpdate();
         }
     }
+    public void addReservation(String customerName, int tableNumber, int numberOfPeople, int date, int time) throws SQLException {
+        String sql = "INSERT INTO Reservations (CustomerName, TableNumber, NumberOfPeople)";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(2, customerName);
+            statement.setDouble(3, tableNumber);
+            statement.setDouble(4, numberOfPeople);
+            statement.setDate(date, null);
+            statement.setTime(time, null);
+            statement.executeUpdate();
+        }
+    }
+    public void removeReservation(int reservationID) throws SQLException {
+        String sql = "DELETE FROM Reservations WHERE ReservationID = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, reservationID);
+            statement.executeUpdate();
+        }
+}
 }
