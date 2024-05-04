@@ -23,10 +23,10 @@ public class PresentationLayer {
             choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline character
             System.out.println("Restauant Management");
-            System.out.println("1. Remove Employee");
-            System.out.println("2. Add Employee");
-            System.out.println("3. Add Reservation");
-            System.out.println("4. Delete Reservation");
+            System.out.println("1. Add A Reservation");
+            System.out.println("2. Delete A Reservation");
+            System.out.println("3. Add an Employee");
+            System.out.println("4. Remove an Employee");
             System.out.println("5. View Menu");
             System.out.println("6. Exit");
             System.out.println("Enter your choice:");

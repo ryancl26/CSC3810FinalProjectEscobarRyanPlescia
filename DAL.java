@@ -44,4 +44,13 @@ public class DAL {
             statement.executeUpdate();
         }
     }
+
+    public void removeEmployee(int employeeID) throws SQLException {
+        String sql = "DELETE FROM EmployeeInfo WHERE EmployeeID = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, employeeID);
+            statement.executeUpdate();
+        }
+    }
 }
