@@ -69,20 +69,19 @@ public class DAL {
             statement.executeUpdate();
         }
     }
-    public void addReservation(String customerName, int tableNumber, String MenuItemID, int numberOfPeople, int date, int time) throws SQLException {
+    public void addReservation(String customerName, int tableNumber, int numberOfPeople, int date, int time) throws SQLException {
         String sql = "INSERT INTO Reservations (CustomerName, TableNumber, NumberOfPeople)";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(2, customerName);
             statement.setDouble(3, tableNumber);
-            statement.setString(3, MenuItemID);
             statement.setDouble(4, numberOfPeople);
             statement.setDate(date, null);
             statement.setString(time, "18:30");
             statement.executeUpdate();
         }
     }
-    public void getAllReservation() throws SQLException {
+    public void getAllReservation(String customerName, int i, String numberOfPeople, int j, int k, String string) throws SQLException {
         String sql = "{CALL GetAllReservations()}";
 
         try (CallableStatement statement = connection.prepareCall(sql)) {
@@ -107,4 +106,19 @@ public class DAL {
             statement.executeUpdate();
         }
 }
+    
+    public void getAllMenuItems() throws SQLException {
+        String sql = "{Call GetAllMenuItems()}";
+
+        try (CallableStatement statement = connection.prepareCall(sql)) {
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()) {
+                System.out.println("MenuItemID: " + resultSet.getInt("MenuItemID"));
+                System.out.println("ItemName: " + resultSet.getString("ItemName"));
+                System.out.println("Category: " + resultSet.getInt("Category"));
+                System.out.println("Price: " + resultSet.getInt("Price"));
+            }
+        }
+    }
+
 }
