@@ -69,18 +69,36 @@ public class DAL {
             statement.executeUpdate();
         }
     }
-    public void addReservation(String customerName, int tableNumber, int numberOfPeople, int date, int time) throws SQLException {
+    public void addReservation(String customerName, int tableNumber, String MenuItemID, int numberOfPeople, int date, int time) throws SQLException {
         String sql = "INSERT INTO Reservations (CustomerName, TableNumber, NumberOfPeople)";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(2, customerName);
             statement.setDouble(3, tableNumber);
+            statement.setString(3, MenuItemID);
             statement.setDouble(4, numberOfPeople);
             statement.setDate(date, null);
-            statement.setTime(time, null);
+            statement.setString(time, "18:30");
             statement.executeUpdate();
         }
     }
+    public void getAllReservation() throws SQLException {
+        String sql = "{CALL GetAllReservations()}";
+
+        try (CallableStatement statement = connection.prepareCall(sql)) {
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()) {
+                System.out.println("ReservationID: " + resultSet.getInt("ReservationID"));
+                System.out.println("CustomerName: " + resultSet.getString("CustomerName"));
+                System.out.println("TableNumber: " + resultSet.getDouble("TableNumber"));
+                System.out.println("MenuItemID: " + resultSet.getInt("MenuItemID"));
+                System.out.println("NumberOfPeople: " + resultSet.getInt("NumberOfPeople"));
+                System.out.println("Date: " + resultSet.getDate("Date"));
+                System.out.println("Time: " + resultSet.getTime("18:30"));
+            }
+        }
+    }
+
     public void removeReservation(int reservationID) throws SQLException {
         String sql = "DELETE FROM Reservations WHERE ReservationID = ?";
 
