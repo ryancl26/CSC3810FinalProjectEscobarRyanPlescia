@@ -1,7 +1,6 @@
 package src;
 //Connect to database, implement and run main method
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -15,14 +14,10 @@ public class PresentationLayer {
         System.out.println("Enter database password:");
         String password = scanner.nextLine();
 
-        DAL dal = new DAL("Restaurant Management", username, password);
+        DAL dal = new DAL("RestaurantManagement", username, password);
 
         int choice;
         do {
-            System.out.println("Restaurant Management");
-            //make list of choices
-            choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline character
             System.out.println("Restauant Management");
             System.out.println("1. Add A Reservation");
             System.out.println("2. Delete A Reservation");
@@ -43,10 +38,10 @@ public class PresentationLayer {
                     //workflow 2 (dal, scanner);
                     break;
                 case 3:
-                    //workflow 3 (dal, scanner);
+                    BLL.addEmployee(dal, scanner);
                     break;
                 case 4:
-                    //workflow 4(dal);
+                    BLL.removeEmployee(dal, scanner);
                     break;
                 case 5:
                     //workflow 5 (dal, scanner);
