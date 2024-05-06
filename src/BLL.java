@@ -11,6 +11,19 @@ import java.util.Scanner;
 
 public class BLL {
 
+    public static void showTableInfo(DAL dal) {
+        try {
+            List<String> tables = dal.getTables();
+            if (tables.isEmpty()) {
+                System.out.println("No tables available.");
+            } else {
+                System.out.println("Available Tables:");
+                tables.forEach(System.out::println);
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve tables: " + e.getMessage());
+        }
+    }
 
 
 
@@ -107,21 +120,19 @@ public static void removeEmployee(DAL dal, Scanner scanner) {
 
 //print menu
 public static void viewMenu(DAL dal) {
-       try {
-           List<String> menuItems = dal.getMenuItems();
-           if (menuItems.isEmpty()) {
-               System.out.println("No menu items available.");
-           } else {
-               System.out.println("Menu Items:");
-               for (String item : menuItems) {
-                   System.out.println(item);
-               }
-           }
-       } catch (SQLException e) {
-           System.out.println("Failed to retrieve menu items: " + e.getMessage());
-       }
-   }
-  
+    try {
+        List<String> menuItems = dal.getMenuItems();
+        if (menuItems.isEmpty()) {
+            System.out.println("No menu items available.");
+        } else {
+            System.out.println("Menu Items:");
+            menuItems.forEach(System.out::println);
+        }
+    } catch (SQLException e) {
+        System.out.println("Failed to retrieve menu items: " + e.getMessage());
+    }
+}
+
 }
 
 

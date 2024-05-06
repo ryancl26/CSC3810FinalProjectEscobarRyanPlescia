@@ -30,6 +30,7 @@ public class PresentationLayer {
 
            switch (choice) {
                case 1:
+                    BLL.showTableInfo(dal);  // Show table info before adding a reservation
                     BLL.addReservation(dal, scanner);
                    break;
                case 2:
@@ -45,7 +46,7 @@ public class PresentationLayer {
                    BLL.viewMenu(dal);
                    break;
                case 6:
-                   System.out.println("Exiting...");
+                   System.out.println("Exit Complete");
                    break;
                default:
                    System.out.println("Invalid choice. Please enter a number between 1 and 6.");

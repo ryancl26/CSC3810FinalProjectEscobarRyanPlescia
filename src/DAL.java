@@ -38,6 +38,24 @@ public class DAL {
            connection.close();
        }
    }
+
+   public List<String> getTables() throws SQLException {
+    List<String> tables = new ArrayList<>();
+    String sql = "SELECT TableNumber, NumberOfSeats, Location FROM Tables ORDER BY TableNumber LIMIT 10 ";
+    try (PreparedStatement statement = connection.prepareStatement(sql);
+         ResultSet resultSet = statement.executeQuery()) {
+        while (resultSet.next()) {
+            String tableInfo = "Table Number: " + resultSet.getInt("TableNumber") +
+                               ", Seats: " + resultSet.getInt("NumberOfSeats") +
+                               ", Location: " + resultSet.getString("Location");
+            tables.add(tableInfo);
+        }
+    }
+    return tables;
+}
+
+
+
     public void addReservation(String customerName, int tableNumber, int menuItemID, int numberOfPeople, Date reservationDate, Time reservationTime) throws SQLException {
        String sql = "INSERT INTO Reservations (CustomerName, TableNumber, MenuItemID, NumberOfPeople, ReservationDate, ReservationTime) VALUES (?, ?, ?, ?, ?, ?)";
        try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -109,11 +127,12 @@ public void getAllEmployees() throws SQLException {
 
  public List<String> getMenuItems() throws SQLException {
        List<String> menuItems = new ArrayList<>();
-       String sql = "SELECT ItemName, Category, Price, AvailableTime FROM Menu";
+       String sql = "SELECT DISTINCT MenuItemID, ItemName, Category, Price, AvailableTime FROM Menu LIMIT 18";
        try (PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery()) {
            while (resultSet.next()) {
-               String item = resultSet.getString("ItemName") + ", " +
+               String item = resultSet.getInt("MenuItemID") + ", " +
+                             resultSet.getString("ItemName") + ", " +
                              resultSet.getString("Category") + ", Price: $" +
                              resultSet.getDouble("Price") + ", Available at: " +
                              resultSet.getTime("AvailableTime").toString();
