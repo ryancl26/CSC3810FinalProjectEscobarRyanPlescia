@@ -33,7 +33,7 @@ public static void addReservation(DAL dal, Scanner scanner) {
        String customerName = scanner.nextLine();
        System.out.println("Enter table number:");
        int tableNumber = scanner.nextInt();
-       System.out.println("Enter menu item ID:");
+       System.out.println("Enter the ID of menu item:");
        int menuItemID = scanner.nextInt();
        System.out.println("Enter number of people:");
        int numberOfPeople = scanner.nextInt();
