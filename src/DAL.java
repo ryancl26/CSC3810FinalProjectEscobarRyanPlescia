@@ -114,10 +114,10 @@ public void getAllEmployees() throws SQLException {
    try (PreparedStatement statement = connection.prepareStatement(sql);
        ResultSet resultSet = statement.executeQuery()) {
        while (resultSet.next()) {
-           System.out.println("EmployeeID: " + resultSet.getInt("EmployeeID"));
-           System.out.println("EmployeeName: " + resultSet.getString("EmployeeName"));
-           System.out.println("Position: " + resultSet.getString("Position"));
-           System.out.println("Salary: " + resultSet.getDouble("Salary"));
+           System.out.print("EmployeeID: " + resultSet.getInt("EmployeeID") + " ");
+           System.out.print("EmployeeName: " + resultSet.getString("EmployeeName")+ " ");
+           System.out.print("Position: " + resultSet.getString("Position")+ " ");
+           System.out.print("Salary: " + resultSet.getDouble("Salary") + " ");
            System.out.println("----------------------");
       
     }
@@ -140,6 +140,23 @@ public void getAllEmployees() throws SQLException {
            }
        }
        return menuItems;
+   }
+
+   public void getAllReservations() throws SQLException{
+    String sql = "SELECT CustomerName, TableNumber, MenuItemID, NumberOfPeople, ReservationTime, ReservationDate FROM Reservations";
+   try (PreparedStatement statement = connection.prepareStatement(sql);
+       ResultSet resultSet = statement.executeQuery()) {
+       while (resultSet.next()) {
+           System.out.println("Customer Name: " + resultSet.getString("CustomerName") + " ");
+           System.out.print("Table Number: " + resultSet.getInt("TableNumber") + " ");
+           System.out.print("Menu Item: " + resultSet.getInt("MenuItemId") + " ");
+           System.out.print("Number of People: " + resultSet.getInt("NumberOfPeople")+ " ");
+           System.out.print("Reservation Time: " + resultSet.getTime("ReservationTime")+ " ");
+           System.out.println("Reservation Date " + resultSet.getDate("ReservationDate"));
+           System.out.println("----------------------");
+      
+    }
+   }
    }
 }
 

@@ -54,6 +54,13 @@ public static void addReservation(DAL dal, Scanner scanner) {
 
 
    public static void removeReservation(DAL dal, Scanner scanner) {
+    System.out.println("Listing all reservations:");
+    try {
+       dal.getAllReservations();
+    } catch (SQLException exception) {
+       System.out.println("Failed to retrieve employees: " + exception.getMessage());
+       return;
+    }
        System.out.println("Enter the reservation ID to remove:");
        int reservationID = scanner.nextInt();
        scanner.nextLine();  // Consume newline
