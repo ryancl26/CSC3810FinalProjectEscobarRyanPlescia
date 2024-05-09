@@ -1,16 +1,22 @@
 package src;
 //add workflows into here once done
 
-
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.List;
 import java.util.Scanner;
 
-
+/**
+ * Business Logic Layer class contains methods for handling business logic operations
+ * related to the Restaurant Management System.
+ */
 public class BLL {
 
+    /**
+     * Retrieves and displays information about available tables from the database.
+     * @param dal the Data Access Layer object used to interact with the database
+     */
     public static void showTableInfo(DAL dal) {
         try {
             List<String> tables = dal.getTables();
@@ -27,8 +33,12 @@ public class BLL {
 
 
 
-//create reservation
-public static void addReservation(DAL dal, Scanner scanner) {
+    /**
+     * Adds a reservation to the database.
+     * @param dal the Data Access Layer object used to interact with the database
+     * @param scanner the Scanner object used to read user input
+     */
+    public static void addReservation(DAL dal, Scanner scanner) {
        System.out.println("Enter customer name:");
        String customerName = scanner.nextLine();
        System.out.println("Enter table number:");
@@ -53,6 +63,11 @@ public static void addReservation(DAL dal, Scanner scanner) {
    }
 
 
+   /**
+     * Removes a reservation from the database.
+     * @param dal the Data Access Layer object used to interact with the database
+     * @param scanner the Scanner object used to read user input
+     */
    public static void removeReservation(DAL dal, Scanner scanner) {
     System.out.println("Listing all reservations:");
     try {
@@ -77,19 +92,24 @@ public static void addReservation(DAL dal, Scanner scanner) {
 
 
 
-//add en employee
-public static void addEmployee(DAL dal, Scanner scanner) {
-   System.out.println("Adding a new employee...");
-   System.out.println("Enter employee name:");
-   String employeeName = scanner.nextLine();
-   System.out.println("Enter employee position:");
-   String position = scanner.nextLine();
-   System.out.println("Enter employee salary:");
-   double salary = scanner.nextDouble();
-   scanner.nextLine(); // Consume newline character
+
+   /**
+     * Adds an employee to the database.
+     * @param dal the Data Access Layer object used to interact with the database
+     * @param scanner the Scanner object used to read user input
+     */
+    public static void addEmployee(DAL dal, Scanner scanner) {
+        System.out.println("Adding a new employee...");
+        System.out.println("Enter employee name:");
+        String employeeName = scanner.nextLine();
+        System.out.println("Enter employee position:");
+        String position = scanner.nextLine();
+        System.out.println("Enter employee salary:");
+        double salary = scanner.nextDouble();
+        scanner.nextLine(); // Consume newline character
 
 
-   try {
+    try {
        dal.addEmployee(employeeName, position, salary);
        System.out.println("Employee added successfully.");
    } catch (SQLException exception) {
@@ -97,13 +117,14 @@ public static void addEmployee(DAL dal, Scanner scanner) {
    }
 }
 
-
-//remove an employee
-
-
-public static void removeEmployee(DAL dal, Scanner scanner) {
-   System.out.println("Listing all employees:");
-   try {
+    /**
+     * Removes an employee from the database.
+     * @param dal the Data Access Layer object used to interact with the database
+     * @param scanner the Scanner object used to read user input
+     */
+    public static void removeEmployee(DAL dal, Scanner scanner) {
+        System.out.println("Listing all employees:");
+    try {
        dal.getAllEmployees();
    } catch (SQLException exception) {
        System.out.println("Failed to retrieve employees: " + exception.getMessage());
@@ -125,16 +146,19 @@ public static void removeEmployee(DAL dal, Scanner scanner) {
 }
 
 
-//print menu
-public static void viewMenu(DAL dal) {
-    try {
-        List<String> menuItems = dal.getMenuItems();
-        if (menuItems.isEmpty()) {
-            System.out.println("No menu items available.");
-        } else {
-            System.out.println("Menu Items:");
-            menuItems.forEach(System.out::println);
-        }
+    /**
+     * Retrieves and displays the menu items from the database.
+     * @param dal the Data Access Layer object used to interact with the database
+     */
+    public static void viewMenu(DAL dal) {
+        try {
+            List<String> menuItems = dal.getMenuItems();
+            if (menuItems.isEmpty()) {
+                System.out.println("No menu items available.");
+            } else {
+                System.out.println("Menu Items:");
+                menuItems.forEach(System.out::println);
+            }
     } catch (SQLException e) {
         System.out.println("Failed to retrieve menu items: " + e.getMessage());
     }

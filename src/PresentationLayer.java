@@ -1,16 +1,22 @@
 package src;
 //Connect to database, implement and run main method
 
-
 import java.sql.SQLException;
 import java.util.Scanner;
 
 
-
-
+/**
+ * PresentationLayer class represents the user interface for interacting with the Restaurant Management System.
+ * It connects to the database, provides a menu for users to choose from, and executes corresponding actions.
+ */
 public class PresentationLayer {
 
 
+    /**
+    * The main method of the PresentationLayer class, which serves as the entry point of the application.
+    * It prompts the user to enter database credentials, displays a menu, and handles user input to execute actions.
+    * @param args command-line arguments passed to the program
+    */
    public static void main(String[] args) {
        Scanner scanner = new Scanner(System.in);
        System.out.println("Enter database username:");
@@ -19,9 +25,11 @@ public class PresentationLayer {
        String password = scanner.nextLine();
 
 
+       // Initialize Data Access Layer with provided credentials
        DAL dal = new DAL("RestaurantManagement", username, password);
 
 
+       // Execute actions based on user's choice
        int choice;
        do {
            displayMenu();
@@ -52,8 +60,9 @@ public class PresentationLayer {
                    System.out.println("Invalid choice. Please enter a number between 1 and 6.");
            }
        } while (choice != 6);
-       // Close connection
+       
     
+       // Close connection to the database
        try {
            dal.closeConnection();
        } catch (SQLException exception) {
@@ -64,6 +73,9 @@ public class PresentationLayer {
    }
 
 
+   /**
+    * Displays the menu options for the user.
+    */
    private static void displayMenu() {
        System.out.println("Restaurant Management");
        System.out.println("1. Add A Reservation");
@@ -76,6 +88,11 @@ public class PresentationLayer {
    }
 
 
+   /**
+    * Reads an integer input from the user.
+    * @param scanner the Scanner object used to read user input
+    * @return the integer input provided by the user
+    */
    private static int getIntInput(Scanner scanner) {
        while (true) {
            try {
