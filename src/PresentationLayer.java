@@ -54,12 +54,15 @@ public class PresentationLayer {
                    BLL.viewMenu(dal);
                    break;
                case 6:
-                   System.out.println("Exit Complete");
+                    BLL.viewMenuAlphabetical(dal);
                    break;
+                case 7:
+                    System.out.println("Exit Complete");
+                    break;
                default:
                    System.out.println("Invalid choice. Please enter a number between 1 and 6.");
            }
-       } while (choice != 6);
+       } while (choice != 7);
        
     
        // Close connection to the database
@@ -83,7 +86,8 @@ public class PresentationLayer {
        System.out.println("3. Add an Employee");
        System.out.println("4. Remove an Employee");
        System.out.println("5. View Menu");
-       System.out.println("6. Exit");
+       System.out.println("6. View Menu in alphabetical order");
+       System.out.println("7. Exit");
        System.out.println("Enter your choice:");
    }
 

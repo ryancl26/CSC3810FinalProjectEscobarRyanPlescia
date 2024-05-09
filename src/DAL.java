@@ -223,5 +223,28 @@ public void getAllEmployees() throws SQLException {
     }
    }
    }
+
+   /**
+    * Retrieves a list of menu items from the database in alphabetical order.
+    *
+    * @return A list containing menu item information.
+    * @throws SQLException If a database access error occurs.
+    */
+    public List<String> getMenuItemsAlphabetical() throws SQLException {
+        List<String> menuItems = new ArrayList<>();
+        String sql = "SELECT DISTINCT MenuItemID, ItemName, Category, Price, AvailableTime FROM Menu ORDER BY ItemName";
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                String item = resultSet.getInt("MenuItemID") + ", " +
+                        resultSet.getString("ItemName") + ", " +
+                        resultSet.getString("Category") + ", Price: $" +
+                        resultSet.getDouble("Price") + ", Available at: " +
+                        resultSet.getTime("AvailableTime").toString();
+                menuItems.add(item);
+            }
+        }
+        return menuItems;
+    }
 }
 

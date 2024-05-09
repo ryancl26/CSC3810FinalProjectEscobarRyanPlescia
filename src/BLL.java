@@ -164,6 +164,25 @@ public class BLL {
     }
 }
 
+    /**
+     * Retrieves and displays the menu items from the database in alphabetical order.
+     *
+     * @param dal the Data Access Layer object used to interact with the database
+     */
+    public static void viewMenuAlphabetical(DAL dal) {
+        try {
+            List<String> menuItems = dal.getMenuItemsAlphabetical();
+            if (menuItems.isEmpty()) {
+                System.out.println("No menu items available.");
+            } else {
+                System.out.println("Menu Items (Alphabetical Order):");
+                menuItems.forEach(System.out::println);
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve menu items: " + e.getMessage());
+        }
+    }
+
 }
 
 
