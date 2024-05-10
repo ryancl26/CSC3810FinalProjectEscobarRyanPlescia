@@ -38,6 +38,7 @@ public class PresentationLayer {
 
            switch (choice) {
                case 1:
+                    BLL.viewMenu(dal);
                     BLL.showTableInfo(dal);  // Show table info before adding a reservation
                     BLL.addReservation(dal, scanner);
                    break;

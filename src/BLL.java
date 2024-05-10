@@ -43,7 +43,7 @@ public class BLL {
        String customerName = scanner.nextLine();
        System.out.println("Enter table number:");
        int tableNumber = scanner.nextInt();
-       System.out.println("Enter the ID of menu item:");
+       System.out.println("Enter meal number:");
        int menuItemID = scanner.nextInt();
        System.out.println("Enter number of people:");
        int numberOfPeople = scanner.nextInt();

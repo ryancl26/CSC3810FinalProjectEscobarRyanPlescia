@@ -208,10 +208,11 @@ public void getAllEmployees() throws SQLException {
     * @throws SQLException If a database access error occurs.
     */
    public void getAllReservations() throws SQLException{
-    String sql = "SELECT CustomerName, TableNumber, MenuItemID, NumberOfPeople, ReservationTime, ReservationDate FROM Reservations";
+    String sql = "SELECT ReservationID, CustomerName, TableNumber, MenuItemID, NumberOfPeople, ReservationTime, ReservationDate FROM Reservations ORDER BY ReservationDate, ReservationTime";
    try (PreparedStatement statement = connection.prepareStatement(sql);
        ResultSet resultSet = statement.executeQuery()) {
        while (resultSet.next()) {
+        System.out.println("Reservation ID: " + resultSet.getInt("ReservationID") + " ");
            System.out.println("Customer Name: " + resultSet.getString("CustomerName") + " ");
            System.out.print("Table Number: " + resultSet.getInt("TableNumber") + " ");
            System.out.print("Menu Item: " + resultSet.getInt("MenuItemId") + " ");
